@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Salon de Belleza"
+version = "1.0.0"
+id = "artifacts/salon-belleza"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21676
+
+[services.development]
+run = "pnpm --filter @workspace/salon-belleza run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/salon-belleza", "run", "build" ]
+publicDir = "artifacts/salon-belleza/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21676"
+BASE_PATH = "/"
