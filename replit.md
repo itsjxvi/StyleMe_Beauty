@@ -48,6 +48,17 @@ Salon management web app (Spanish UI). Features:
   - Facturación: invoices, payments (linked to appointments), expenses
   - Notification bell in admin header (reminders, confirmations, low_stock, reviews)
 - **Auto inventory deduction**: when an appointment is marked completed via `POST /api/appointments/{id}/complete`, products linked to the service are decremented from stock and a low_stock notification is created if a product crosses its min_stock threshold.
+- **Online store + cart + checkout**: `/tienda` (catalog with promo banners), `/carrito` (cart, promo validation, delivery $3.50, payment method: cash/card/transfer/delivery_cash). Orders persisted with discount and activity log entry.
+- **Promotions**: admin CRUD at `/admin/promociones`. Codes validated at checkout via `POST /api/promotions/validate`. Seeded: BIENVENIDA10, ENVIOGRATIS, BELLEZA15.
+- **Activity logs**: `/admin/actividad` — every login + create/update/delete on key entities is logged via `logActivity()` middleware helper.
+- **Smart reports**: `/admin/reportes` — profitability by service, employee performance, peak hours, top spenders, with CSV export.
+- **CSV exports**: `/api/exports/{products|appointments|invoices|orders|customers}.csv` (BOM-prefixed for Excel).
+- **Booking guard**: `/citas` requires login. Business hours 8:00–20:00 enforced server-side, with 10-min rest between appointments and overlap check.
+
+### Auth model
+- Plaintext passwords (dev). Token format: `token-{userId}` sent via `Authorization: Bearer ...`.
+- Roles: `admin` | `employee` | `customer`. Permissions map in `artifacts/api-server/src/lib/auth.ts` — use `requirePermission(action)` middleware.
+- Frontend uses `setAuthTokenGetter` (in `main.tsx`) for orval-generated hooks; `apiFetch()` helper in `src/lib/apiFetch.ts` for new endpoints (orders, promotions, activity-logs, reports, exports).
 
 ### Codegen quirk
 

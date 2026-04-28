@@ -1,4 +1,5 @@
 import { Router, type IRouter } from "express";
+import { loadUser } from "../lib/auth";
 import healthRouter from "./health";
 import authRouter from "./auth";
 import usersRouter from "./users";
@@ -17,8 +18,14 @@ import reviewsRouter from "./reviews";
 import serviceProductsRouter from "./serviceProducts";
 import notificationsRouter from "./notifications";
 import reportsRouter from "./reports";
+import ordersRouter from "./orders";
+import promotionsRouter from "./promotions";
+import activityLogsRouter from "./activityLogs";
+import exportsRouter from "./exports";
 
 const router: IRouter = Router();
+
+router.use(loadUser);
 
 router.use(healthRouter);
 router.use(authRouter);
@@ -38,5 +45,9 @@ router.use(reviewsRouter);
 router.use(serviceProductsRouter);
 router.use(notificationsRouter);
 router.use(reportsRouter);
+router.use(ordersRouter);
+router.use(promotionsRouter);
+router.use(activityLogsRouter);
+router.use(exportsRouter);
 
 export default router;

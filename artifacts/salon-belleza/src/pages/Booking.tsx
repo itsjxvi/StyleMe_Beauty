@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useListServices, useCreateAppointment } from "@workspace/api-client-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Scissors, Clock, ChevronLeft, CheckCircle } from "lucide-react";
+import { Scissors, Clock, ChevronLeft, CheckCircle, LogIn } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/auth";
 
 export default function Booking() {
+  const { user } = useAuth();
+  const [, navigate] = useLocation();
   const [step, setStep] = useState<"service" | "details" | "success">("service");
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [form, setForm] = useState({
-    client_name: "",
-    client_phone: "",
+    client_name: user?.full_name ?? "",
+    client_phone: user?.phone ?? "",
     date: "",
     time: "",
     notes: "",
@@ -25,14 +28,34 @@ export default function Booking() {
 
   const createMutation = useCreateAppointment({
     mutation: {
-      onSuccess: () => {
-        setStep("success");
+      onSuccess: () => setStep("success"),
+      onError: (err: any) => {
+        const msg = err?.body?.error || err?.message || "No se pudo crear la cita. Intenta de nuevo.";
+        toast({ title: "Error", description: msg, variant: "destructive" });
       },
-      onError: () => {
-        toast({ title: "Error", description: "No se pudo crear la cita. Intenta de nuevo.", variant: "destructive" });
-      }
-    }
+    },
   });
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-6">
+        <Card className="max-w-md w-full">
+          <CardContent className="p-8 text-center">
+            <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <LogIn size={28} className="text-primary" />
+            </div>
+            <h1 className="font-serif text-2xl font-bold mb-2">Inicia sesión para reservar</h1>
+            <p className="text-sm text-muted-foreground mb-6">Necesitas una cuenta para crear citas y comprar productos. Es rápido y gratis.</p>
+            <div className="flex gap-2">
+              <Link href="/registro" className="flex-1"><Button variant="outline" className="w-full">Crear cuenta</Button></Link>
+              <Link href="/login" className="flex-1"><Button className="w-full">Iniciar sesión</Button></Link>
+            </div>
+            <Link href="/" className="mt-6 inline-block text-sm text-muted-foreground hover:text-foreground">← Volver al inicio</Link>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const selectedSvc = services.find(s => s.id === selectedService);
 

@@ -12,3 +12,6 @@ export * from "./expenses";
 export * from "./reviews";
 export * from "./serviceProducts";
 export * from "./notifications";
+export * from "./activityLogs";
+export * from "./orders";
+export * from "./promotions";

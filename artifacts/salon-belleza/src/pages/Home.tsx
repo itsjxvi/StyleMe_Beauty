@@ -6,12 +6,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { Scissors, Clock, Star, Phone, MapPin, ChevronRight, Sparkles, Package, Tag, LogOut, LayoutDashboard, MessageSquarePlus } from "lucide-react";
+import { Scissors, Clock, Star, Phone, MapPin, ChevronRight, Sparkles, Package, Tag, LogOut, LayoutDashboard, MessageSquarePlus, ShoppingCart, Store } from "lucide-react";
 import { useAuth } from "@/contexts/auth";
+import { useCart } from "@/contexts/cart";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const { user, logout } = useAuth();
+  const { count: cartCount } = useCart();
   const { toast } = useToast();
   const isStaff = user?.role === "admin" || user?.role === "employee";
   const { data: servicesData, isLoading } = useListServices();
@@ -68,10 +70,19 @@ export default function Home() {
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#servicios" className="text-muted-foreground hover:text-foreground transition-colors">Servicios</a>
+            <Link href="/tienda" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"><Store size={14} />Tienda</Link>
             <a href="#resenas" className="text-muted-foreground hover:text-foreground transition-colors">Reseñas</a>
             {user && <a href="#marcas" className="text-muted-foreground hover:text-foreground transition-colors">Marcas</a>}
             {user && <a href="#productos" className="text-muted-foreground hover:text-foreground transition-colors">Productos</a>}
             <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</a>
+            <Link href="/carrito">
+              <Button variant="ghost" size="sm" className="gap-1.5 relative">
+                <ShoppingCart size={14} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] rounded-full w-4 h-4 flex items-center justify-center">{cartCount}</span>
+                )}
+              </Button>
+            </Link>
             {!user && (
               <>
                 <Link href="/registro">

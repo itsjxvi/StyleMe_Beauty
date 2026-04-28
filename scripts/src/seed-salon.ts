@@ -118,6 +118,16 @@ async function main() {
     ]);
   }
 
+  const { promotionsTable } = await import("@workspace/db");
+  const promoCount = (await db.select().from(promotionsTable)).length;
+  if (promoCount === 0) {
+    await db.insert(promotionsTable).values([
+      { name: "Bienvenida 10%", description: "10% en tu primera compra", code: "BIENVENIDA10", type: "percent", value: "10", applies_to: "all", min_amount: "0", is_active: true },
+      { name: "Envío gratis +$50", description: "Sobre productos al comprar más de $50", code: "ENVIOGRATIS", type: "amount", value: "3.50", applies_to: "products", min_amount: "50", is_active: true },
+      { name: "Combo Belleza 15%", description: "15% en compras de productos sobre $30", code: "BELLEZA15", type: "percent", value: "15", applies_to: "products", min_amount: "30", is_active: true },
+    ]);
+  }
+
   console.log("Done.");
   console.log("Admin login: admin@salonbelleza.com / Admin1234");
   process.exit(0);

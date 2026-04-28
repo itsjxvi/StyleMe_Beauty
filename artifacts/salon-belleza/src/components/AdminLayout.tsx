@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard, Calendar, Users, Package, Tag, Bookmark,
   Truck, BarChart3, FileText, CreditCard, TrendingDown, Layers,
-  LogOut, ChevronDown, ChevronRight, Scissors, Star, PieChart, CalendarDays
+  LogOut, ChevronDown, ChevronRight, Scissors, Star, PieChart, CalendarDays,
+  ShoppingBag, Activity, Sparkles
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,9 @@ const navItems: NavItem[] = [
   { label: "Calendario", icon: <CalendarDays size={18} />, href: "/admin/calendario" },
   { label: "Reseñas", icon: <Star size={18} />, href: "/admin/resenas" },
   { label: "Reportes", icon: <PieChart size={18} />, href: "/admin/reportes" },
+  { label: "Ventas", icon: <ShoppingBag size={18} />, href: "/admin/ventas" },
+  { label: "Promociones", icon: <Sparkles size={18} />, href: "/admin/promociones" },
+  { label: "Actividad", icon: <Activity size={18} />, href: "/admin/actividad" },
   {
     label: "Usuarios", icon: <Users size={18} />,
     children: [
