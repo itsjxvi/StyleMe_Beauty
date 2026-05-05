@@ -14,8 +14,8 @@ export async function apiFetch<T = any>(path: string, init?: RequestInit): Promi
     ...(init?.headers as any),
   };
   if (token) headers["Authorization"] = `Bearer ${token}`;
-  const url = path.startsWith("/api") ? path : `/api${path}`;
-  const res = await fetch(url, { ...init, headers });
+  const base = import.meta.env.VITE_API_URL ?? "";
+  const url = `${base}${path.startsWith("/api") ? path : `/api${path}`}`;  const res = await fetch(url, { ...init, headers });
   if (!res.ok) {
     let err: any = { error: res.statusText };
     try { err = await res.json(); } catch {}
