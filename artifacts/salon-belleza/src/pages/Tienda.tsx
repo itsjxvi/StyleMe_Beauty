@@ -55,7 +55,7 @@ export default function Tienda() {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Scissors size={16} className="text-white" />
               </div>
-              <span className="font-serif font-bold text-xl">Salón de Belleza</span>
+              <span className="font-serif font-bold text-xl">StyleMe Beauty</span>
             </div>
           </Link>
           <nav className="flex items-center gap-3 text-sm">

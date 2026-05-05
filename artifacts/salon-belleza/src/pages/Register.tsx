@@ -31,7 +31,7 @@ export default function Register() {
   const createMutation = useCreateUser({
     mutation: {
       onSuccess: () => {
-        toast({ title: "Cuenta creada", description: "Bienvenido al Salón de Belleza" });
+        toast({ title: "Cuenta creada", description: "¡Bienvenido a StyleMe Beauty!" });
         loginMutation.mutate({ data: { email, password } });
       },
       onError: (err: any) => {
@@ -70,7 +70,7 @@ export default function Register() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl shadow-lg mb-4">
             <Scissors size={28} className="text-white" />
           </div>
-          <h1 className="font-serif text-3xl font-bold text-foreground">Salón de Belleza</h1>
+          <h1 className="font-serif text-3xl font-bold text-foreground">StyleMe Beauty</h1>
           <p className="text-muted-foreground mt-1">Crea tu cuenta</p>
         </div>
 

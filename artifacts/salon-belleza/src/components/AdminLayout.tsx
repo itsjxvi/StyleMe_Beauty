@@ -5,7 +5,7 @@ import {
   LayoutDashboard, Calendar, Users, Package, Tag, Bookmark,
   Truck, BarChart3, FileText, CreditCard, TrendingDown, Layers,
   LogOut, ChevronDown, ChevronRight, Scissors, Star, PieChart, CalendarDays,
-  ShoppingBag, Activity, Sparkles
+  ShoppingBag, Activity, Sparkles, UserCircle
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -133,7 +133,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
               <Scissors size={16} className="text-white" />
             </div>
             <div>
-              <p className="font-serif font-semibold text-sm text-foreground">Salón de Belleza</p>
+              <p className="font-serif font-semibold text-sm text-foreground">StyleMe Beauty</p>
               <p className="text-xs text-muted-foreground">Administración</p>
             </div>
           </div>
@@ -159,6 +159,12 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
               <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
             </div>
           </div>
+          <Link href="/perfil">
+            <Button variant="ghost" size="sm" className="w-full gap-2 mb-1.5">
+              <UserCircle size={14} />
+              Ver perfil
+            </Button>
+          </Link>
           <Button
             variant="outline"
             size="sm"

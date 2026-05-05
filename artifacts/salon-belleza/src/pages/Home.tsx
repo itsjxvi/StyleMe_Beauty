@@ -66,7 +66,7 @@ export default function Home() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Scissors size={16} className="text-white" />
             </div>
-            <span className="font-serif font-bold text-xl text-foreground">Salón de Belleza</span>
+            <span className="font-serif font-bold text-xl text-foreground">StyleMe Beauty</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#servicios" className="text-muted-foreground hover:text-foreground transition-colors">Servicios</a>
@@ -95,12 +95,19 @@ export default function Home() {
             )}
             {user && (
               <>
-                <span className="text-muted-foreground">Hola, {user.full_name.split(" ")[0]}</span>
+                <Link href="/perfil">
+                  <button className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <div className="w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                      {user.full_name.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="text-sm font-medium">{user.full_name.split(" ")[0]}</span>
+                  </button>
+                </Link>
                 {isStaff && (
                   <Link href="/admin/dashboard">
                     <Button variant="outline" size="sm" className="gap-1.5">
                       <LayoutDashboard size={14} />
-                      Administración
+                      Admin
                     </Button>
                   </Link>
                 )}
@@ -126,9 +133,9 @@ export default function Home() {
               Salon Unisex Profesional
             </div>
             <h1 className="font-serif text-5xl md:text-6xl font-bold text-foreground leading-tight mb-6">
-              Salón de
+              StyleMe
               <br />
-              <span className="text-primary">Belleza</span>
+              <span className="text-primary">Beauty</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
               Refleja tu belleza interior
@@ -518,7 +525,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Scissors size={16} className="text-primary" />
-            <span className="font-serif font-bold text-foreground">Salón de Belleza</span>
+            <span className="font-serif font-bold text-foreground">StyleMe Beauty</span>
           </div>
           <p className="text-sm text-muted-foreground">
             Refleja tu belleza interior

@@ -127,7 +127,7 @@ export default function Carrito() {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Scissors size={16} className="text-white" />
               </div>
-              <span className="font-serif font-bold text-xl">Salón de Belleza</span>
+              <span className="font-serif font-bold text-xl">StyleMe Beauty</span>
             </div>
           </Link>
           <Link href="/tienda"><Button variant="ghost" size="sm" className="gap-1.5"><ArrowLeft size={14} />Seguir comprando</Button></Link>

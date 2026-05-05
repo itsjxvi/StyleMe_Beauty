@@ -10,8 +10,8 @@ import { Scissors } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Login() {
-  const [email, setEmail] = useState("admin@salonbelleza.com");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { setUser } = useAuth();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
@@ -45,8 +45,8 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl shadow-lg mb-4">
             <Scissors size={28} className="text-white" />
           </div>
-          <h1 className="font-serif text-3xl font-bold text-foreground">Salón de Belleza</h1>
-          <p className="text-muted-foreground mt-1">Panel de administración</p>
+          <h1 className="font-serif text-3xl font-bold text-foreground">StyleMe Beauty</h1>
+          <p className="text-muted-foreground mt-1">Bienvenido de vuelta</p>
         </div>
 
         <Card className="shadow-xl border-border/50">
@@ -63,7 +63,7 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="admin@salonbelleza.com"
+                  placeholder="tu@correo.com"
                   data-testid="input-email"
                   required
                 />

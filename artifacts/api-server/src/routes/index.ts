@@ -22,6 +22,7 @@ import ordersRouter from "./orders";
 import promotionsRouter from "./promotions";
 import activityLogsRouter from "./activityLogs";
 import exportsRouter from "./exports";
+import profileRouter from "./profile";
 
 const router: IRouter = Router();
 
@@ -49,5 +50,6 @@ router.use(ordersRouter);
 router.use(promotionsRouter);
 router.use(activityLogsRouter);
 router.use(exportsRouter);
+router.use(profileRouter);
 
 export default router;

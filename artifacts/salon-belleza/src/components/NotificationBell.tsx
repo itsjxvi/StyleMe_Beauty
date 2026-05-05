@@ -31,10 +31,18 @@ export function NotificationBell() {
   const markAll = useMarkAllNotificationsRead({ mutation: { onSuccess: () => refetch() } });
   const del = useDeleteNotification({ mutation: { onSuccess: () => refetch() } });
 
+  const toggleOpen = () => {
+    const next = !open;
+    setOpen(next);
+    if (next && unreadCount > 0) {
+      markAll.mutate();
+    }
+  };
+
   return (
     <div className="relative">
       <button
-        onClick={() => setOpen(!open)}
+        onClick={toggleOpen}
         className="relative w-9 h-9 rounded-full hover:bg-accent flex items-center justify-center transition"
       >
         <Bell size={18} className="text-muted-foreground" />

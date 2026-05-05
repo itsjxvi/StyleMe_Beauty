@@ -15,3 +15,4 @@ export * from "./notifications";
 export * from "./activityLogs";
 export * from "./orders";
 export * from "./promotions";
+export * from "./memberships";

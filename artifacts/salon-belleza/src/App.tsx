@@ -6,16 +6,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/contexts/auth";
 import { CartProvider } from "@/contexts/cart";
 
-// Public pages
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Booking from "@/pages/Booking";
 import Tienda from "@/pages/Tienda";
 import Carrito from "@/pages/Carrito";
+import Profile from "@/pages/Profile";
 import NotFound from "@/pages/not-found";
 
-// Admin pages
 import Dashboard from "@/pages/admin/Dashboard";
 import Appointments from "@/pages/admin/Appointments";
 import Calendar from "@/pages/admin/Calendar";
@@ -64,6 +63,7 @@ function Router() {
       <Route path="/citas" component={Booking} />
       <Route path="/tienda" component={Tienda} />
       <Route path="/carrito" component={Carrito} />
+      <Route path="/perfil" component={Profile} />
 
       {/* Admin */}
       <Route path="/admin/dashboard" component={() => <AdminRoute component={Dashboard} />} />
